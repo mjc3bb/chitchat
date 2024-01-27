@@ -19,8 +19,8 @@ mod chatserver {
     pub struct ChatServerArgs {}
 }
 
-use client::ClientArgs;
 use chatserver::ChatServerArgs;
+use client::ClientArgs;
 
 #[derive(Debug, Parser)]
 #[command(version, about)]
@@ -45,7 +45,7 @@ fn main() {
     match args.command {
         Commands::V1(s) => {
             println!("{}", s.port);
-        },
+        }
         Commands::V2(_) => {
             println!("command 2");
         }
