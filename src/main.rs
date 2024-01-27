@@ -12,7 +12,15 @@ mod client {
     }
 }
 
+mod chatserver {
+    use clap::{Args, Subcommand};
+
+    #[derive(Debug, Args)]
+    pub struct ChatServerArgs {}
+}
+
 use client::ClientArgs;
+use chatserver::ChatServerArgs;
 
 #[derive(Debug, Parser)]
 #[command(version, about)]
