@@ -8,7 +8,7 @@ mod client {
     #[command()]
     pub struct ClientArgs {
         #[arg(short, long)]
-        pub port: u16
+        pub port: u16,
     }
 }
 
@@ -18,14 +18,18 @@ use client::ClientArgs;
 #[command(version, about)]
 struct Args {
     #[command(subcommand)]
-    command: Commands
+    command: Commands,
 }
 
 #[derive(Debug, Subcommand)]
 #[command()]
 enum Commands {
     #[command()]
-    V1( ClientArgs )
+    V1(ClientArgs),
+
+    #[allow(dead_code)]
+    #[command(skip)]
+    V2,
 }
 
 fn main() {
@@ -35,6 +39,6 @@ fn main() {
         Commands::V1(s) => {
             println!("{}", s.port)
         }
+        _ => todo!("Unhandled command"),
     };
 }
-
