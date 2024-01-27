@@ -25,7 +25,8 @@ struct Args {
 #[command()]
 enum Commands {
     #[command()]
-    V1( ClientArgs )
+    V1( ClientArgs ),
+    V2
 }
 
 fn main() {
@@ -34,7 +35,8 @@ fn main() {
     match args.command {
         Commands::V1(s) => {
             println!("{}", s.port)
-        }
+        },
+        _ => todo!("Unhandled command")
     };
 }
 
