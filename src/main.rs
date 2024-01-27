@@ -35,9 +35,8 @@ enum Commands {
     #[command()]
     V1(ClientArgs),
 
-    #[allow(dead_code)]
-    #[command(skip)]
-    V2,
+    #[command()]
+    V2(ChatServerArgs),
 }
 
 fn main() {
