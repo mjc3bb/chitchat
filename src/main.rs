@@ -26,6 +26,9 @@ struct Args {
 enum Commands {
     #[command()]
     V1( ClientArgs ),
+
+    #[allow(dead_code)]
+    #[command(skip)]
     V2
 }
 
