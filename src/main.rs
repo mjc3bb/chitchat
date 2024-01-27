@@ -2,12 +2,13 @@
 use clap::{Parser, Subcommand};
 
 mod client {
-    use clap::Parser;
+    use clap::{Args, Subcommand};
 
-    #[derive(Debug, Parser)]
+    #[derive(Debug, Args)]
+    #[command()]
     pub struct ClientArgs {
         #[arg(short, long)]
-        port: u16
+        pub port: u16
     }
 }
 
@@ -23,21 +24,17 @@ struct Args {
 #[derive(Debug, Subcommand)]
 #[command()]
 enum Commands {
-    V1 {
-        #[arg()]
-        name: String,
-        #[arg()]
-        address: String
-    },
+    #[command()]
+    V1( ClientArgs )
 }
 
 fn main() {
     let args = Args::parse();
 
-    match args.command {
-        Commands::V1{ name, address } => {
-            println!("{} {}", name, address)
-        }
-    };
+    //match args.command {
+    //    Commands::V1{ port } => {
+    //        println!("{}", port)
+    //    }
+    //};
 }
 
