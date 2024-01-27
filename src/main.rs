@@ -2,7 +2,7 @@
 use clap::{Parser, Subcommand};
 
 mod client {
-    use clap::{Args, Subcommand};
+    use clap::Args;
 
     #[derive(Debug, Args)]
     #[command()]
@@ -13,7 +13,7 @@ mod client {
 }
 
 mod chatserver {
-    use clap::{Args, Subcommand};
+    use clap::Args;
 
     #[derive(Debug, Args)]
     pub struct ChatServerArgs {}
