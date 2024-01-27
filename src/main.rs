@@ -44,8 +44,10 @@ fn main() {
 
     match args.command {
         Commands::V1(s) => {
-            println!("{}", s.port)
+            println!("{}", s.port);
+        },
+        Commands::V2(_) => {
+            println!("command 2");
         }
-        _ => todo!("Unhandled command"),
     };
 }
