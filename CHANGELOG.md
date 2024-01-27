@@ -7,15 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Installed tonic and tokio crates
+- Created chatserver submodule
+
+### Changed
+
+- v2 command enabled and hooked into chatserver args
+
 ## [0.3.0] - 2015-12-03
 
 ### Added
 
 - V2 Command (hidden from cli use)
-
-### Changed
-
-- Ran rustfmt
 
 [unreleased]: https://github.com/mjc3bb/chitchat/compare/0.3.0...HEAD
 [0.3.0]: https://github.com/mjc3bb/chitchat/compare/0.2.0...0.3.0
