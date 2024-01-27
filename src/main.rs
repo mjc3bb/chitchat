@@ -39,6 +39,6 @@ fn main() {
         Commands::V1(s) => {
             println!("{}", s.port)
         }
-        _ => todo!("Unhandled command"),
+        _ => todo!("Command: Unhandled command"),
     };
 }
