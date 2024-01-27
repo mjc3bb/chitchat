@@ -31,10 +31,10 @@ enum Commands {
 fn main() {
     let args = Args::parse();
 
-    //match args.command {
-    //    Commands::V1{ port } => {
-    //        println!("{}", port)
-    //    }
-    //};
+    match args.command {
+        Commands::V1(s) => {
+            println!("{}", s.port)
+        }
+    };
 }
 
