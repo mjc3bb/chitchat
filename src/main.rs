@@ -12,6 +12,14 @@ mod client {
     }
 }
 
+mod chatserver {
+    use clap::{Args, Subcommand};
+
+    #[derive(Debug, Args)]
+    pub struct ChatServerArgs {}
+}
+
+use chatserver::ChatServerArgs;
 use client::ClientArgs;
 
 #[derive(Debug, Parser)]
@@ -27,9 +35,8 @@ enum Commands {
     #[command()]
     V1(ClientArgs),
 
-    #[allow(dead_code)]
-    #[command(skip)]
-    V2,
+    #[command()]
+    V2(ChatServerArgs),
 }
 
 fn main() {
@@ -37,8 +44,10 @@ fn main() {
 
     match args.command {
         Commands::V1(s) => {
-            println!("{}", s.port)
+            println!("{}", s.port);
         }
-        _ => todo!("Unhandled command"),
+        Commands::V2(_) => {
+            println!("command 2");
+        }
     };
 }
