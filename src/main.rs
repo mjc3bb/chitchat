@@ -1,11 +1,6 @@
 #![allow(unused_imports, unused_import_braces)]
 use clap::{Parser, Subcommand};
 
-
-
-
-
-
 mod client {
     use clap::Args;
 
@@ -38,20 +33,20 @@ struct Args {
 #[command()]
 enum Commands {
     #[command()]
-    V1(ClientArgs),
+    Client(ClientArgs),
 
     #[command()]
-    V2(ChatServerArgs),
+    ChatServer(ChatServerArgs),
 }
 
 fn main() {
     let args = Args::parse();
 
     match args.command {
-        Commands::V1(s) => {
+        Commands::Client(s) => {
             println!("{}", s.port);
         }
-        Commands::V2(_) => {
+        Commands::ChatServer(_) => {
             println!("command 2");
         }
     };
