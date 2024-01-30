@@ -46,7 +46,7 @@ mod chatserver {
 }
 
 use chatserver::ChatServerArgs;
-use client::ClientArgs;
+use client::{handle as client_handle, ClientArgs};
 
 #[derive(Debug, Parser)]
 #[command(version, about)]
@@ -69,9 +69,7 @@ fn main() {
     let args = Args::parse();
 
     match args.command {
-        Commands::Client(_) => {
-            println!("");
-        }
+        Commands::Client(s) => client_handle(s),
         Commands::ChatServer(_) => {
             println!("command 2");
         }
