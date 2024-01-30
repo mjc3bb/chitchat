@@ -1,4 +1,3 @@
-#![allow(unused_imports, unused_import_braces)]
 use clap::{Parser, Subcommand};
 
 mod client {
