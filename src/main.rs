@@ -16,23 +16,27 @@ mod client {
     pub enum Commands {
         #[command()]
         Start {
-            #[arg(short, long, env = "PORT")]
+            #[arg(short, long, env = "SERVER_ADDRESS", default_value = "0.0.0.0")]
+            address: String,
+            #[arg(short, long, env = "SERVER_ADDRESS", default_value = "8080")]
             port: u16,
         },
         #[command()]
         Ping {
-            #[arg(short, long, env = "PORT")]
+            #[arg(short, long, env = "SERVER_HOST", default_value = "0.0.0.0")]
+            address: String,
+            #[arg(short, long, env = "SERVER_PORT", default_value = "8080")]
             port: u16,
         },
     }
 
     pub fn handle(args: ClientArgs) {
         match args.command {
-            Commands::Start { port } => {
-                println!("starting client... {}", port);
+            Commands::Start { address, port } => {
+                println!("starting client... {}:{}", address, port);
             }
-            Commands::Ping { port } => {
-                println!("pinging server... {}", port);
+            Commands::Ping { address, port } => {
+                println!("pinging server... {}:{}", address, port);
             }
         }
     }
