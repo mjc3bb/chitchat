@@ -47,9 +47,14 @@ mod chatserver {
 
     #[derive(Debug, Args)]
     pub struct ChatServerArgs {}
+
+    #[allow(dead_code, unused_variables)]
+    pub fn handle(args: ChatServerArgs) {
+        println!("command 2");
+    }
 }
 
-use chatserver::ChatServerArgs;
+use chatserver::{handle as chatserver_handle, ChatServerArgs};
 use client::{handle as client_handle, ClientArgs};
 
 #[derive(Debug, Parser)]
@@ -74,8 +79,6 @@ fn main() {
 
     match args.command {
         Commands::Client(s) => client_handle(s),
-        Commands::ChatServer(_) => {
-            println!("command 2");
-        }
+        Commands::ChatServer(s) => chatserver_handle(s),
     };
 }
