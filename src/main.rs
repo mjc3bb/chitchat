@@ -18,12 +18,12 @@ mod client {
         Start {
             #[arg(short, long, env = "SERVER_ADDRESS", default_value = "0.0.0.0")]
             address: String,
-            #[arg(short, long, env = "SERVER_ADDRESS", default_value = "8080")]
+            #[arg(short, long, env = "SERVER_PORT", default_value = "8080")]
             port: u16,
         },
         #[command()]
         Ping {
-            #[arg(short, long, env = "SERVER_HOST", default_value = "0.0.0.0")]
+            #[arg(short, long, env = "SERVER_ADDRESS", default_value = "0.0.0.0")]
             address: String,
             #[arg(short, long, env = "SERVER_PORT", default_value = "8080")]
             port: u16,
