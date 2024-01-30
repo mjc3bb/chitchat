@@ -43,13 +43,35 @@ mod client {
 }
 
 mod chatserver {
-    use clap::Args;
+    use clap::{Args, Subcommand};
 
     #[derive(Debug, Args)]
-    pub struct ChatServerArgs {}
+    pub struct ChatServerArgs {
+        #[command(subcommand)]
+        command: Commands,
+    }
+
+    #[derive(Debug, Subcommand)]
+    #[command()]
+    pub enum Commands {
+        #[command()]
+        Listen {
+            #[arg(short, long, env = "ADDRESS", default_value = "0.0.0.0")]
+            address: String,
+            #[arg(short, long, env = "PORT", default_value = "8080")]
+            port: u16,
+        },
+    }
+
+    #[allow(dead_code, unused_variables)]
+    pub fn handle(args: ChatServerArgs) {
+        match args.command {
+            Commands::Listen { address, port } => println!("Listening... {}:{}", address, port),
+        }
+    }
 }
 
-use chatserver::ChatServerArgs;
+use chatserver::{handle as chatserver_handle, ChatServerArgs};
 use client::{handle as client_handle, ClientArgs};
 
 #[derive(Debug, Parser)]
@@ -74,8 +96,6 @@ fn main() {
 
     match args.command {
         Commands::Client(s) => client_handle(s),
-        Commands::ChatServer(_) => {
-            println!("command 2");
-        }
+        Commands::ChatServer(s) => chatserver_handle(s),
     };
 }
