@@ -2,13 +2,39 @@
 use clap::{Parser, Subcommand};
 
 mod client {
-    use clap::Args;
+    use clap::{Args, Subcommand};
 
     #[derive(Debug, Args)]
     #[command()]
     pub struct ClientArgs {
-        #[arg(short, long)]
-        pub port: u16,
+        #[command(subcommand)]
+        pub command: Commands,
+    }
+
+    #[derive(Debug, Subcommand)]
+    #[command()]
+    pub enum Commands {
+        #[command()]
+        Start {
+            #[arg(short, long, env = "PORT")]
+            port: u16,
+        },
+        #[command()]
+        Ping {
+            #[arg(short, long, env = "PORT")]
+            port: u16,
+        },
+    }
+
+    pub fn handle(args: ClientArgs) {
+        match args.command {
+            Commands::Start { port } => {
+                println!("starting client... {}", port);
+            }
+            Commands::Ping { port } => {
+                println!("pinging server... {}", port);
+            }
+        }
     }
 }
 
@@ -43,8 +69,8 @@ fn main() {
     let args = Args::parse();
 
     match args.command {
-        Commands::Client(s) => {
-            println!("{}", s.port);
+        Commands::Client(_) => {
+            println!("");
         }
         Commands::ChatServer(_) => {
             println!("command 2");
